@@ -1,4 +1,6 @@
 
+
+# Defines main
 def main():
     print("main")
 
