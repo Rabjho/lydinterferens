@@ -1,4 +1,4 @@
-#! C:\Python310\ python
+#! C:/Python310/ python
 import os
 import re
 from tempfile import tempdir
