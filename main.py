@@ -1,9 +1,13 @@
 #! C:/Python310/ python
 import os
 import re
-from tempfile import tempdir
 import numpy as np
-import matplotlib
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+
+mpl.use('Qt5Agg')
+
 
 # Defines main
 def main():
@@ -19,7 +23,17 @@ def main():
     arr = np.transpose(arr[:,:,1:],(0,2,1))
     arr = np.core.defchararray.replace(arr,',', '.')
     arr = arr.astype('float64')
-    print(arr)
+    arr = np.mean(arr,axis=2)
+    arr = np.rot90(arr)
+    arr = np.flip(arr, axis=0)
+
+
+    plt.imshow(arr, cmap="plasma")
+    plt.gca().invert_yaxis()
+    plt.title("Lydinterferens")
+    plt.colorbar(label="dB")
+
+    plt.show()
 
 """ 
 0th axis of arr is equivalent to x on the grid (from left to right) 
