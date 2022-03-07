@@ -14,15 +14,22 @@ def main():
     print("main")
     arr = np.empty((9,50),str)
 
-    for csv in os.listdir(os.getcwd()+'/data'):
+    for csv in os.listdir(os.getcwd()+'/data2'):
         if (re.search("Række.*\.csv", csv) != None):
-            temp = np.genfromtxt("data/"+csv, delimiter=";", dtype=str,skip_header=1)
+            temp = np.genfromtxt("data2/"+csv, delimiter=";", dtype=str,skip_header=1)
             temp = np.array(np.array_split(temp,9,axis=1))[:,:,1:]
             arr = np.dstack((arr,temp))
 
+
+
+
     arr = np.transpose(arr[:,:,1:],(0,2,1))
     arr = np.core.defchararray.replace(arr,',', '.')
+  
     arr = arr.astype('float64')
+
+    # print(np.amax(arr))
+
     arr = np.mean(arr,axis=2)
     arr = np.rot90(arr)
     arr = np.flip(arr, axis=0)
